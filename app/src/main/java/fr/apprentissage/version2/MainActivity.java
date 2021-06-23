@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Person;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -67,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
         textName = (TextView) findViewById(R.id.itexti);
 
         btnClickHere.setOnClickListener(new View.OnClickListener() {
-
+            String name;
             @Override
             public void onClick(View v) {
-                String name = editTextName.getText().toString();
+                name = editTextName.getText().toString();
                 textName.setText(name);
             }
         });
@@ -93,18 +94,6 @@ public class MainActivity extends AppCompatActivity {
         List<String> key;
         //affichage des pairs clé-valeur
 
-
-        while (itr.hasNext()) {
-            // obtenir la clé
-            key = itr.next();
-            if (key.contains(textName.toString())) {
-                Toast.makeText(getApplicationContext(), "Key: " + key + " & Value: " + testMap4.get(key), Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "pas trouvé", Toast.LENGTH_SHORT).show();
-            }
-
-        }
         Button Testons;
         Testons = (Button) findViewById(R.id.Testons);
         Testons.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 Set keys = testMap4.keySet();
                 Iterator<List<String>> itr = keys.iterator();
                 List<String> key;
+
 
                 while (itr.hasNext()) {
 
@@ -128,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 }
+
             });
         //SUITE
     }
