@@ -1,10 +1,5 @@
 package fr.apprentissage.version2;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Person;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,17 +18,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import fr.apprentissage.version2.R;
-
-import static java.lang.Integer.parseInt;
-
 public class MainActivity extends AppCompatActivity {
-
+    String name=null;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         HashMap<String, Integer> happy = new HashMap<String, Integer>();
         happy.put("a", 10);
         happy.put("b", 3);
@@ -68,47 +64,53 @@ public class MainActivity extends AppCompatActivity {
         textName = (TextView) findViewById(R.id.itexti);
 
         btnClickHere.setOnClickListener(new View.OnClickListener() {
-            String name;
             @Override
             public void onClick(View v) {
                 name = editTextName.getText().toString();
                 textName.setText(name);
+                name = textName.getText().toString();
             }
         });
 
-        //TextView textView2;
-        //textView2=(TextView)findViewById(R.id.textView2);
-        //textView2.setText(textName.toString());
 
-        /*public Set keySet():retourne un ensemble de clés
-         * dans cette map. Cet ensemble est retourné par le map
-         * donc, un chagement dans le map est reflété dans l'ensemble
-         * et vice-vers-ça
-         *
-         */
-        Set keys = testMap4.keySet();
 
-        //obtenir un iterator des clés
-        Iterator<List<String>> itr = keys.iterator();
-
-        List<String> key;
-        //affichage des pairs clé-valeur
-
-        Button Testons;
-        Testons = (Button) findViewById(R.id.Testons);
-        Testons.setOnClickListener(new View.OnClickListener() {
-            @Override
+        //Debog system pour y voir plus clair
+        Button debog;
+        debog = (Button) findViewById(R.id.debog);
+        debog.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Set keys = testMap4.keySet();
-                Iterator<List<String>> itr = keys.iterator();
-                List<String> key;
+                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+            }
+        });
+        //Debog system pour y voir plus clair
 
+        //Debog2 system pour y voir plus clair
+        Button debog2;
+        debog2 = (Button) findViewById(R.id.debog2);
+        debog2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                /*public Set keySet():retourne un ensemble de clés
+                 * dans cette map. Cet ensemble est retourné par le map
+                 * donc, un chagement dans le map est reflété dans l'ensemble
+                 * et vice-vers-ça
+                 *
+                 */
+                Set keys = testMap4.keySet();
+
+                //obtenir un iterator des clés
+                Iterator<List<String>> itr = keys.iterator();
+
+                List<String> key;
+                //affichage des pairs clé-valeur
+
+                Button Testons;
+                Testons = (Button) findViewById(R.id.Testons);
 
                 while (itr.hasNext()) {
 
-                    Toast.makeText(getApplicationContext(), textName.toString(), Toast.LENGTH_SHORT).show();
                     key = itr.next();
-                    if (key.contains(textName.toString())) {
+                    Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                    if (key.contains(name)) {
                         Toast.makeText(getApplicationContext(), "Key: " + key + " & Value: " + testMap4.get(key), Toast.LENGTH_SHORT).show();
                     }
                     else{
@@ -116,12 +118,31 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
+            }
+        });
+        //Debog2 system pour y voir plus clair
 
-                }
 
-            });
-        //SUITE
+        //imprimer la hashtable
+        Set keys = testMap4.keySet();
+        Iterator<List<String>> itr = keys.iterator();
+        List<String> key;
+
+            //préparer le text view
+        TextView textView2;
+        textView2 = (TextView) findViewById(R.id.textView2);
+
+        while (itr.hasNext()) {
+            key = itr.next();
+            textView2.setText("Key: "+key+" & Value: "+testMap4.get(key));
+        }
+        //imprimer la hashtable
+
     }
+
 }
+
+
+
 
 
